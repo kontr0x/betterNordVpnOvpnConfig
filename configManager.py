@@ -34,7 +34,7 @@ def unzip(filename):
 
 def getCountry(path):
     countries_dict = {}
-    coutry_regex = r'([a-z]{2}|[a-z]{2}-[a-z]{2,5})[0-9]{1,4}\.nordvpn\.com\.(tcp|udp)\.ovpn'
+    coutry_regex = r'([a-z]{2}|[a-z]{2}-[a-z]{2,5})[0-9]{1,}\.nordvpn\.com\.(tcp|udp)\.ovpn'
     for file in os.listdir(path):
         country_match = re.match(coutry_regex, file)
         country = country_match.groups()[0]
