@@ -82,6 +82,12 @@ def grepServersFromFiles(path, region):
     return servers, ovpn_template
 
 def createConfigs(template, country, connection_type, servers):
+    # Temporarlily outcommenting "verify-x509-name" from the ovpn config becouse there is no option to match the name suffix
+    template = template.replace("verify-x509-name", "#verify-x509-name")
+
+    # Add optionally predefined login credential config, if you want to use it uncomment the line in the ovpn config
+    template = template.replace("auth-user-pass", "auth-user-pass #login.conf")
+
     servers_str = "#\n# Maximum number of servers in OVPN config is 64\n#\n"
     max_range = 64 if len(servers) > 64 else len(servers)
     for index in random.sample(range(0, max_range), max_range):
